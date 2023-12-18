@@ -1,8 +1,4 @@
-import React from "react";
-import TotalDisplay from "./components/TotalDisplay";
-import CalcButton from "./components/CalcButton";
-import { useReducer } from "react";
-import reducer, { initialState } from "./reducers";
+import React, { useReducer } from "react";
 import {
   ADD_ONE,
   APPLY_NUMBER,
@@ -11,9 +7,12 @@ import {
   applyNumber,
   CLEAR_DISPLAY,
 } from "./actions";
+import TotalDisplay from "./components/TotalDisplay";
+import CalcButton from "./components/CalcButton";
+import reducer, { initialState } from "./reducers";
+
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state);
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -31,6 +30,12 @@ function App() {
               <span id="memory">
                 <b>Memory:</b> {state.memory}
               </span>
+            </div>
+
+            <div className="row">
+              <CalcButton value={"M+"} />
+              <CalcButton value={"MR"} />
+              <CalcButton value={"MC"} />
             </div>
 
             <div className="row">
@@ -62,6 +67,7 @@ function App() {
                 onClick={() => dispatch({ type: APPLY_NUMBER, payload: 6 })}
               />
             </div>
+
             <div className="row">
               <CalcButton
                 value={7}
@@ -99,7 +105,6 @@ function App() {
             </div>
 
             <div className="row ce_button">
-              <CalcButton value={"CE"} />
               <CalcButton
                 value={"CE"}
                 onClick={() => dispatch({ type: CLEAR_DISPLAY })}
